@@ -115,6 +115,37 @@
           }
         }
       }
+    },
+    "specification-feature": {
+      "projectType": "library",
+      "root": "libs/specification/feature",
+      "sourceRoot": "libs/specification/feature/src",
+      "prefix": "nx",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/specification/feature/tsconfig.lib.json",
+              "libs/specification/feature/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/specification/feature/**"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/specification/feature/src/test.ts",
+            "tsConfig": "libs/specification/feature/tsconfig.spec.json",
+            "karmaConfig": "libs/specification/feature/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
