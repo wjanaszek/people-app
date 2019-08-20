@@ -19,6 +19,9 @@
     },
     "person-feature": {
       "tags": []
+    },
+    "person-data-access": {
+      "tags": []
     }
   }
 }

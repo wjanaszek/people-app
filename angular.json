@@ -177,6 +177,37 @@
           "styleext": "scss"
         }
       }
+    },
+    "person-data-access": {
+      "projectType": "library",
+      "root": "libs/person/data-access",
+      "sourceRoot": "libs/person/data-access/src",
+      "prefix": "nx",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/person/data-access/tsconfig.lib.json",
+              "libs/person/data-access/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/person/data-access/**"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/person/data-access/src/test.ts",
+            "tsConfig": "libs/person/data-access/tsconfig.spec.json",
+            "karmaConfig": "libs/person/data-access/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
