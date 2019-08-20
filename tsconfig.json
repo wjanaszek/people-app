@@ -18,7 +18,10 @@
     "paths": {
       "@nx/specification/feature": ["libs/specification/feature/src/index.ts"],
       "@nx/person/feature": ["libs/person/feature/src/index.ts"],
-      "@nx/person/data-access": ["libs/person/data-access/src/index.ts"]
+      "@nx/person/data-access": ["libs/person/data-access/src/index.ts"],
+      "@nx/person/ui-details-dialog": [
+        "libs/person/ui-details-dialog/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

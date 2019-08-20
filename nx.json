@@ -22,6 +22,9 @@
     },
     "person-data-access": {
       "tags": []
+    },
+    "person-ui-details-dialog": {
+      "tags": []
     }
   }
 }
