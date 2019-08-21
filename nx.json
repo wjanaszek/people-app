@@ -31,6 +31,9 @@
     },
     "person-resource": {
       "tags": []
+    },
+    "shared": {
+      "tags": []
     }
   }
 }

@@ -21,10 +21,7 @@
             "polyfills": "apps/people/src/polyfills.ts",
             "tsConfig": "apps/people/tsconfig.app.json",
             "aot": false,
-            "assets": [
-              "apps/people/src/favicon.ico",
-              "apps/people/src/assets"
-            ],
+            "assets": ["apps/people/src/favicon.ico", "apps/people/src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/people/src/styles.scss"
@@ -82,10 +79,7 @@
               "apps/people/tsconfig.app.json",
               "apps/people/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/people/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/people/**"]
           }
         },
         "test": {
@@ -119,13 +113,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/people-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/people-e2e/**"
-            ]
+            "tsConfig": ["apps/people-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/people-e2e/**"]
           }
         }
       }
@@ -143,10 +132,7 @@
               "libs/specification/feature/tsconfig.lib.json",
               "libs/specification/feature/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/specification/feature/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/specification/feature/**"]
           }
         },
         "test": {
@@ -177,10 +163,7 @@
               "libs/person/feature/tsconfig.lib.json",
               "libs/person/feature/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/person/feature/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/person/feature/**"]
           }
         },
         "test": {
@@ -211,10 +194,7 @@
               "libs/person/data-access/tsconfig.lib.json",
               "libs/person/data-access/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/person/data-access/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/person/data-access/**"]
           }
         },
         "test": {
@@ -279,10 +259,7 @@
               "libs/person/ui-list/tsconfig.lib.json",
               "libs/person/ui-list/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/person/ui-list/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/person/ui-list/**"]
           }
         },
         "test": {
@@ -313,10 +290,7 @@
               "libs/person/resource/tsconfig.lib.json",
               "libs/person/resource/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/person/resource/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/person/resource/**"]
           }
         },
         "test": {
@@ -325,6 +299,37 @@
             "main": "libs/person/resource/src/test.ts",
             "tsConfig": "libs/person/resource/tsconfig.spec.json",
             "karmaConfig": "libs/person/resource/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "shared": {
+      "projectType": "library",
+      "root": "libs/shared",
+      "sourceRoot": "libs/shared/src",
+      "prefix": "nx",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/tsconfig.lib.json",
+              "libs/shared/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/**"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/shared/src/test.ts",
+            "tsConfig": "libs/shared/tsconfig.spec.json",
+            "karmaConfig": "libs/shared/karma.conf.js"
           }
         }
       },

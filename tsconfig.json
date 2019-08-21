@@ -16,14 +16,17 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@person/specification/feature": ["libs/specification/feature/src/index.ts"],
+      "@person/specification/feature": [
+        "libs/specification/feature/src/index.ts"
+      ],
       "@person/person/feature": ["libs/person/feature/src/index.ts"],
       "@person/person/data-access": ["libs/person/data-access/src/index.ts"],
       "@person/person/ui-details-dialog": [
         "libs/person/ui-details-dialog/src/index.ts"
       ],
       "@person/person/ui-list": ["libs/person/ui-list/src/index.ts"],
-      "@person/person/resource": ["libs/person/resource/src/index.ts"]
+      "@person/person/resource": ["libs/person/resource/src/index.ts"],
+      "@nx/shared": ["libs/shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
