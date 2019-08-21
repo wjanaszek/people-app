@@ -308,18 +308,18 @@
         }
       }
     },
-    "shared": {
+    "person-shared": {
       "projectType": "library",
-      "root": "libs/shared",
-      "sourceRoot": "libs/shared/src",
-      "prefix": "nx",
+      "root": "libs/person/shared",
+      "sourceRoot": "libs/person/shared/src",
+      "prefix": "peo",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/shared/tsconfig.lib.json",
-              "libs/shared/tsconfig.spec.json"
+              "libs/person/shared/tsconfig.lib.json",
+              "libs/person/shared/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**", "!libs/shared/**"]
           }
@@ -327,9 +327,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/shared/src/test.ts",
-            "tsConfig": "libs/shared/tsconfig.spec.json",
-            "karmaConfig": "libs/shared/karma.conf.js"
+            "main": "libs/person/shared/src/test.ts",
+            "tsConfig": "libs/person/shared/tsconfig.spec.json",
+            "karmaConfig": "libs/pesron/shared/karma.conf.js"
           }
         }
       },

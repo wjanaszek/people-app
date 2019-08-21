@@ -10,10 +10,11 @@ import {
   CACHE_TIME
 } from '@person/person/shared';
 import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app.routing-module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
   bootstrap: [AppComponent],
   providers: [
     {

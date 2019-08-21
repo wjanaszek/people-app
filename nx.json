@@ -1,5 +1,5 @@
 {
-  "npmScope": "person",
+  "npmScope": "people",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": "*",

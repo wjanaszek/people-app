@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Person } from '@person/person/resource';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Person, PERSON_COLLECTION_MOCK_DATA } from '@person/person/resource';
 
 @Component({
   selector: 'peo-person',
@@ -10,9 +10,15 @@ export class PersonComponent implements OnInit {
   personCollection: Person[];
   personCollectionLoading = true;
 
-  constructor() {}
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.personCollection = PERSON_COLLECTION_MOCK_DATA;
+    setTimeout(() => {
+      this.personCollectionLoading = false;
+      this.changeDetectorRef.markForCheck();
+    }, 2000);
+  }
 
   reloadList(): void {}
 }

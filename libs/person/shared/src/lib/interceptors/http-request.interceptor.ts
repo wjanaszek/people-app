@@ -6,7 +6,7 @@ import {
   HttpRequest
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { API_KEY_NAME, API_KEY_VALUE } from '@person/person/shared';
+import { API_KEY_NAME, API_KEY_VALUE } from '../injection-tokens';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +21,12 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    request = request.clone({
-      setHeaders: {
-        [`${this.apiKeyName}`]: `${this.apiKeyValue}`
-      }
-    });
-    return next.handle(request);
+    return next.handle(
+      request.clone({
+        setHeaders: {
+          [`${this.apiKeyName}`]: `${this.apiKeyValue}`
+        }
+      })
+    );
   }
 }

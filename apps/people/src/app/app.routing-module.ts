@@ -1,31 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
 
 const routes: Route[] = [
   {
+    path: 'person',
+    loadChildren: () =>
+      import('@person/person/feature').then(m => m.PersonFeatureModule)
+  },
+  {
+    path: 'specification',
+    loadChildren: () =>
+      import('@person/specification/feature').then(
+        m => m.SpecificationFeatureModule
+      )
+  },
+  {
     path: '',
-    component: AppComponent,
-    children: [
-      {
-        path: 'person',
-        loadChildren: () =>
-          import('libs/person/feature/src/lib/person-feature.module').then(
-            m => m.PersonFeatureModule
-          )
-      },
-      {
-        path: 'specification',
-        loadChildren: () =>
-          import('libs/specification/feature/src/lib/specification-feature.module').then(
-            m => m.SpecificationFeatureModule
-          )
-      }
-    ]
+    redirectTo: 'person',
+    pathMatch: 'full'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}
