@@ -15,6 +15,7 @@ import { DetailsDialogComponent } from './components/details-dialog/details-dial
     MatProgressSpinnerModule
   ],
   declarations: [DetailsDialogComponent],
+  entryComponents: [DetailsDialogComponent],
   exports: [DetailsDialogComponent]
 })
 export class PersonUiDetailsDialogModule {}

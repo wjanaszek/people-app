@@ -1,6 +1,7 @@
 <peo-list
   [personCollection]="personCollection"
   [personCollectionLoading]="personCollectionLoading"
+  (openDetails)="onOpenDetails($event)"
 ></peo-list>
 <button mat-raised-button color="primary" type="button" (click)="reloadList()">
   RELOAD LIST
