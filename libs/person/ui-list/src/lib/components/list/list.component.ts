@@ -10,9 +10,15 @@ import { Person, PersonHelper } from '@person/person/resource';
 export class ListComponent {
   @Input()
   personCollection: Person[];
+  @Input()
+  personCollectionLoading: boolean;
 
   // @TODO add memoize
   getPersonFullName(person: Person): string {
     return PersonHelper.getFullName(person);
+  }
+
+  trackByFn(index: number, person: Person): string {
+    return `${index}${person.id}`;
   }
 }

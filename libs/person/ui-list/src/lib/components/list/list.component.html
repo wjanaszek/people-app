@@ -1,6 +1,11 @@
-<mat-list-item *ngFor="let person of personCollection">
-  <div>
-    <img [src]="person.avatar" alt="avatar" />
-  </div>
-  <h4 mat-line>{{ getPersonFullName(person) }}</h4>
-</mat-list-item>
+<ng-container *ngIf="!personCollectionLoading; else spinner">
+  <mat-list-item *ngFor="let person of personCollection; trackBy: trackByFn">
+    <div>
+      <img [src]="person.avatar" alt="avatar" />
+    </div>
+    <h4 mat-line>{{ getPersonFullName(person) }}</h4>
+  </mat-list-item>
+</ng-container>
+<ng-template #spinner>
+  <mat-progress-spinner [diameter]="50"> </mat-progress-spinner>
+</ng-template>
