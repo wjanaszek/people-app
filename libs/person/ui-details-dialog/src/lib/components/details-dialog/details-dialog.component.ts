@@ -1,12 +1,13 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
-import { Person, PersonHelper } from '@person/person/resource';
+import { Memoize, Person, PersonHelper } from '@person/person/resource';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'peo-details-dialog',
   templateUrl: './details-dialog.component.html',
-  styleUrls: ['./details-dialog.component.scss']
+  styleUrls: ['./details-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DetailsDialogComponent {
   constructor(
@@ -14,7 +15,7 @@ export class DetailsDialogComponent {
     public data: { person: Person; personLoading$: Observable<boolean> }
   ) {}
 
-  // @TODO add memoize
+  @Memoize()
   getPersonFullName(person: Person): string {
     return PersonHelper.getFullName(person);
   }

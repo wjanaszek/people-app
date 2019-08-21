@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Person, PersonHelper } from '@person/person/resource';
+import { Memoize, Person, PersonHelper } from '@person/person/resource';
 
 @Component({
   selector: 'peo-list',
@@ -13,7 +13,7 @@ export class ListComponent {
   @Input()
   personCollectionLoading: boolean;
 
-  // @TODO add memoize
+  @Memoize()
   getPersonFullName(person: Person): string {
     return PersonHelper.getFullName(person);
   }
