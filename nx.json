@@ -28,6 +28,9 @@
     },
     "person-ui-list": {
       "tags": []
+    },
+    "person-resource": {
+      "tags": []
     }
   }
 }

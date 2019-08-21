@@ -1,0 +1,6 @@
+<mat-list-item *ngFor="let person of personCollection">
+  <div>
+    <img [src]="person.avatar" alt="avatar" />
+  </div>
+  <h4 mat-line>{{ getPersonFullName(person) }}</h4>
+</mat-list-item>

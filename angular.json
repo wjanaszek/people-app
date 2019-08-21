@@ -10,7 +10,7 @@
       },
       "root": "apps/people",
       "sourceRoot": "apps/people/src",
-      "prefix": "nx",
+      "prefix": "person",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -21,8 +21,14 @@
             "polyfills": "apps/people/src/polyfills.ts",
             "tsConfig": "apps/people/tsconfig.app.json",
             "aot": false,
-            "assets": ["apps/people/src/favicon.ico", "apps/people/src/assets"],
-            "styles": ["apps/people/src/styles.scss"],
+            "assets": [
+              "apps/people/src/favicon.ico",
+              "apps/people/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/people/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -76,13 +82,16 @@
               "apps/people/tsconfig.app.json",
               "apps/people/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/people/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/people/**"
+            ]
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "@nrwl/karma:karma",
           "options": {
-            "jestConfig": "apps/people/jest.config.js",
+            "jestConfig": "apps/people/karma.conf.js",
             "tsConfig": "apps/people/tsconfig.spec.json",
             "setupFile": "apps/people/src/test-setup.ts"
           }
@@ -110,8 +119,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/people-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/people-e2e/**"]
+            "tsConfig": [
+              "apps/people-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/people-e2e/**"
+            ]
           }
         }
       }
@@ -120,7 +134,7 @@
       "projectType": "library",
       "root": "libs/specification/feature",
       "sourceRoot": "libs/specification/feature/src",
-      "prefix": "nx",
+      "prefix": "people",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -129,7 +143,10 @@
               "libs/specification/feature/tsconfig.lib.json",
               "libs/specification/feature/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/specification/feature/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/specification/feature/**"
+            ]
           }
         },
         "test": {
@@ -151,7 +168,7 @@
       "projectType": "library",
       "root": "libs/person/feature",
       "sourceRoot": "libs/person/feature/src",
-      "prefix": "nx",
+      "prefix": "people",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -160,7 +177,10 @@
               "libs/person/feature/tsconfig.lib.json",
               "libs/person/feature/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/person/feature/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/person/feature/**"
+            ]
           }
         },
         "test": {
@@ -182,7 +202,7 @@
       "projectType": "library",
       "root": "libs/person/data-access",
       "sourceRoot": "libs/person/data-access/src",
-      "prefix": "nx",
+      "prefix": "people",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -191,7 +211,10 @@
               "libs/person/data-access/tsconfig.lib.json",
               "libs/person/data-access/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/person/data-access/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/person/data-access/**"
+            ]
           }
         },
         "test": {
@@ -213,7 +236,7 @@
       "projectType": "library",
       "root": "libs/person/ui-details-dialog",
       "sourceRoot": "libs/person/ui-details-dialog/src",
-      "prefix": "nx",
+      "prefix": "people",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -247,7 +270,7 @@
       "projectType": "library",
       "root": "libs/person/ui-list",
       "sourceRoot": "libs/person/ui-list/src",
-      "prefix": "nx",
+      "prefix": "people",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -256,7 +279,10 @@
               "libs/person/ui-list/tsconfig.lib.json",
               "libs/person/ui-list/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/person/ui-list/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/person/ui-list/**"
+            ]
           }
         },
         "test": {
@@ -273,6 +299,40 @@
           "styleext": "scss"
         }
       }
+    },
+    "person-resource": {
+      "projectType": "library",
+      "root": "libs/person/resource",
+      "sourceRoot": "libs/person/resource/src",
+      "prefix": "people",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/person/resource/tsconfig.lib.json",
+              "libs/person/resource/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/person/resource/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/person/resource/src/test.ts",
+            "tsConfig": "libs/person/resource/tsconfig.spec.json",
+            "karmaConfig": "libs/person/resource/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
@@ -280,11 +340,11 @@
   },
   "schematics": {
     "@nrwl/angular:application": {
-      "unitTestRunner": "jest",
+      "unitTestRunner": "karma",
       "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
+      "unitTestRunner": "karma"
     }
   },
   "defaultProject": "people"
