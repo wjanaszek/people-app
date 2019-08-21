@@ -1,14 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { SpecificationComponent } from './components/specification/specification.component';
+import { SpecificationFeatureRoutingModule } from './specification-feature.routing-module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-
-    RouterModule.forChild([
-      /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
-    ])
-  ]
+  imports: [CommonModule, SpecificationFeatureRoutingModule],
+  declarations: [SpecificationComponent]
 })
 export class SpecificationFeatureModule {}

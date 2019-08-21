@@ -17,8 +17,8 @@ const routes: Route[] = [
       {
         path: 'specification',
         loadChildren: () =>
-          import('libs/specification/src/lib/specification-feature.module').then(
-            m => m.SpecificationModule
+          import('libs/specification/feature/src/lib/specification-feature.module').then(
+            m => m.SpecificationFeatureModule
           )
       }
     ]
