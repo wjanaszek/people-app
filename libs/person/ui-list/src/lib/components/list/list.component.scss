@@ -1,0 +1,35 @@
+.list--container {
+  position: relative;
+  min-height: 200px;
+}
+
+.list__table--container {
+  position: relative;
+}
+
+.list__table--avatar__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list__spinner--container {
+  position: absolute;
+  height: 100%;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+mat-row {
+  max-height: 100px;
+}

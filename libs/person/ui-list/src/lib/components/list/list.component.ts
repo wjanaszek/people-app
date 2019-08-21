@@ -1,5 +1,14 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { Memoize, Person, PersonHelper } from '@person/person/resource';
+import { MatSort, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'peo-list',
@@ -7,18 +16,36 @@ import { Memoize, Person, PersonHelper } from '@person/person/resource';
   styleUrls: ['./list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListComponent {
+export class ListComponent implements OnInit {
+  dataSource = new MatTableDataSource<Person>();
+  displayedColumns = ['avatar', 'firstName', 'lastName'];
+
+  @Output()
+  openDetails = new EventEmitter<Person>();
+
   @Input()
-  personCollection: Person[];
+  set personCollection(personCollection: Person[]) {
+    this.dataSource.data = personCollection;
+  }
   @Input()
   personCollectionLoading: boolean;
 
-  @Memoize()
-  getPersonFullName(person: Person): string {
-    return PersonHelper.getFullName(person);
+  @ViewChild(MatSort, { static: true })
+  sort: MatSort;
+
+  ngOnInit(): void {
+    this.initSort();
+  }
+
+  onOpenDetails(person: Person): void {
+    this.openDetails.emit(person);
   }
 
   trackByFn(index: number, person: Person): string {
     return `${index}${person.id}`;
+  }
+
+  private initSort(): void {
+    this.dataSource.sort = this.sort;
   }
 }

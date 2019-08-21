@@ -1,11 +1,36 @@
-<ng-container *ngIf="!personCollectionLoading; else spinner">
-  <mat-list-item *ngFor="let person of personCollection; trackBy: trackByFn">
-    <div>
-      <img [src]="person.avatar" alt="avatar" />
-    </div>
-    <h4 mat-line>{{ getPersonFullName(person) }}</h4>
-  </mat-list-item>
-</ng-container>
-<ng-template #spinner>
-  <mat-spinner [diameter]="50"> </mat-spinner>
-</ng-template>
+<div class="list--container">
+  <div *ngIf="personCollectionLoading" class="list__spinner--container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div class="list__table--container">
+    <mat-table [dataSource]="dataSource" [trackBy]="trackByFn" matSort>
+      <ng-container matColumnDef="avatar">
+        <mat-header-cell *matHeaderCellDef> Avatar </mat-header-cell>
+        <mat-cell *matCellDef="let person">
+          <div class="list__table--avatar__container">
+            <img [src]="person.avatar" alt="person avatar" />
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef> First name </mat-header-cell>
+        <mat-cell *matCellDef="let person"> {{ person.first_name }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Last name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let person"> {{ person.last_name }} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        *matRowDef="let person; columns: displayedColumns"
+        (click)="onOpenDetails(person)"
+      ></mat-row>
+    </mat-table>
+  </div>
+</div>
