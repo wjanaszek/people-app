@@ -242,6 +242,37 @@
           "styleext": "scss"
         }
       }
+    },
+    "person-ui-list": {
+      "projectType": "library",
+      "root": "libs/person/ui-list",
+      "sourceRoot": "libs/person/ui-list/src",
+      "prefix": "nx",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/person/ui-list/tsconfig.lib.json",
+              "libs/person/ui-list/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/person/ui-list/**"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/person/ui-list/src/test.ts",
+            "tsConfig": "libs/person/ui-list/tsconfig.spec.json",
+            "karmaConfig": "libs/person/ui-list/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

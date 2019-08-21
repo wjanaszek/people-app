@@ -25,6 +25,9 @@
     },
     "person-ui-details-dialog": {
       "tags": []
+    },
+    "person-ui-list": {
+      "tags": []
     }
   }
 }

@@ -21,7 +21,8 @@
       "@nx/person/data-access": ["libs/person/data-access/src/index.ts"],
       "@nx/person/ui-details-dialog": [
         "libs/person/ui-details-dialog/src/index.ts"
-      ]
+      ],
+      "@nx/person/ui-list": ["libs/person/ui-list/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
