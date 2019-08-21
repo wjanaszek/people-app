@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nx-root',
+  selector: 'peo-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
