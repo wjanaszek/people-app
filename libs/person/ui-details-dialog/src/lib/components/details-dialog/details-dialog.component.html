@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>User details</h1>
+<div
+  *ngIf="!(data.personLoading$ | async); else spinner"
+  mat-dialog-content
+  [style.background-url]="data.person.background_url"
+>
+  <div>
+    <img [src]="data.person.avatar" alt="person avatar" />
+  </div>
+  <span>ID: {{ data.person.id }}</span>
+  <span>Full name: {{ getPersonFullName(data.person) }}</span>
+  <span>Age: {{ data.person.age }}</span>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-raised-button
+    mat-dialog-close
+    cdkFocusInitial
+    color="primary"
+    type="button"
+  >
+    CLOSE
+  </button>
+</div>
+<ng-template #spinner>
+  <mat-progress-spinner [diameter]="30"></mat-progress-spinner>
+</ng-template>
