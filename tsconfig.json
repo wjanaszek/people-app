@@ -26,7 +26,7 @@
       ],
       "@person/person/ui-list": ["libs/person/ui-list/src/index.ts"],
       "@person/person/resource": ["libs/person/resource/src/index.ts"],
-      "@person/shared": ["libs/shared/src/index.ts"]
+      "@person/person/shared": ["libs/person/shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

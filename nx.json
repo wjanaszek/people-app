@@ -12,28 +12,28 @@
       "tags": []
     },
     "people": {
-      "tags": []
+      "tags": ["type:application"]
     },
     "specification-feature": {
-      "tags": []
+      "tags": ["scope:specification", "type:feature"]
     },
     "person-feature": {
-      "tags": []
+      "tags": ["scope:person", "type:feature"]
     },
     "person-data-access": {
-      "tags": []
+      "tags": ["scope:person", "type:data-access"]
     },
     "person-ui-details-dialog": {
-      "tags": []
+      "tags": ["scope:person", "type:ui"]
     },
     "person-ui-list": {
-      "tags": []
+      "tags": ["scope:person", "type:ui"]
     },
     "person-resource": {
-      "tags": []
+      "tags": ["scope:person", "type:resource"]
     },
-    "shared": {
-      "tags": []
+    "person-shared": {
+      "tags": ["scope:person", "type:feature"]
     }
   }
 }

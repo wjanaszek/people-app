@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule, MatDialogModule, MatProgressSpinnerModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatDialogModule,
+  MatProgressSpinnerModule
+} from '@angular/material';
 import { DetailsDialogComponent } from './components/details-dialog/details-dialog.component';
 
 @NgModule({
