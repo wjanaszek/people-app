@@ -8,7 +8,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { Memoize, Person, PersonHelper } from '@person/person/resource';
-import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatSort, MatTableDataSource, Sort } from '@angular/material';
 
 @Component({
   selector: 'peo-list',
@@ -33,12 +33,19 @@ export class ListComponent implements OnInit {
   @ViewChild(MatSort, { static: true })
   sort: MatSort;
 
+  @Output()
+  sortData = new EventEmitter<Sort>();
+
   ngOnInit(): void {
     this.initSort();
   }
 
   onOpenDetails(person: Person): void {
     this.openDetails.emit(person);
+  }
+
+  onSortData(sort: Sort): void {
+    this.sortData.emit(sort);
   }
 
   trackByFn(index: number, person: Person): string {

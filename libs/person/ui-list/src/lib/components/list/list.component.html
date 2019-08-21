@@ -4,7 +4,12 @@
   </div>
 
   <div class="list__table--container">
-    <mat-table [dataSource]="dataSource" [trackBy]="trackByFn" matSort>
+    <mat-table
+      [dataSource]="dataSource"
+      [trackBy]="trackByFn"
+      (matSortChange)="onSortData($event)"
+      matSort
+    >
       <ng-container matColumnDef="avatar">
         <mat-header-cell *matHeaderCellDef> Avatar </mat-header-cell>
         <mat-cell *matCellDef="let person">
