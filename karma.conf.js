@@ -28,7 +28,8 @@ module.exports = () => {
     colors: true,
     logLevel: constants.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browserNoActivityTimeout: 60000,
+    browsers: ['ChromeHeadless'],
     singleRun: true
   };
 };

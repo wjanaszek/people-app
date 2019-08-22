@@ -83,11 +83,12 @@
           }
         },
         "test": {
-          "builder": "@nrwl/karma:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "jestConfig": "apps/people/karma.conf.js",
-            "tsConfig": "apps/people/tsconfig.spec.json",
-            "setupFile": "apps/people/src/test-setup.ts"
+            "main": "apps/people/src/test.ts",
+            "karmaConfig": "apps/people/karma.conf.js",
+            "polyfills": "apps/people/src/polyfills.ts",
+            "tsConfig": "apps/people/tsconfig.spec.json"
           }
         }
       }
