@@ -1,5 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Person, PERSON_COLLECTION_MOCK_DATA } from '@person/person/resource';
+import {
+  Person,
+  PERSON_COLLECTION_MOCK_DATA,
+  PersonHelper
+} from '@person/person/resource';
 import { MatDialog, Sort } from '@angular/material';
 import { of } from 'rxjs';
 import { delay, startWith } from 'rxjs/operators';
@@ -41,24 +45,9 @@ export class PersonComponent implements OnInit {
 
   onSortData(sort: Sort): void {
     if (sort.active === 'lastName') {
-      this.personCollection = this.personCollection.sort(
-        (a: Person, b: Person) => {
-          // @TODO move that to some service
-          switch (sort.direction) {
-            case 'asc':
-              return a.last_name < b.last_name ? -1 : 1;
-            case 'desc':
-              return a.last_name > b.last_name ? -1 : 1;
-            default:
-              if (a.last_name < b.last_name) {
-                return -1;
-              }
-              if (a.last_name > b.last_name) {
-                return 1;
-              }
-              return 0;
-          }
-        }
+      this.personCollection = PersonHelper.sortByLastName(
+        this.personCollection,
+        sort
       );
     }
   }
