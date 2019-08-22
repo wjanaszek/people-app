@@ -1,13 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import {
-  Person,
-  PERSON_COLLECTION_MOCK_DATA,
-  PersonHelper
-} from '@person/person/resource';
+import { Person, PersonHelper } from '@person/person/resource';
 import { MatDialog, Sort } from '@angular/material';
-import { of } from 'rxjs';
-import { delay, startWith } from 'rxjs/operators';
+import { EMPTY, Observable } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
 import { DetailsDialogComponent } from '@person/person/ui-details-dialog';
+import { PersonDataService } from '@person/person/data-access';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'peo-person',
@@ -20,25 +18,18 @@ export class PersonComponent implements OnInit {
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private personDataService: PersonDataService
   ) {}
 
   ngOnInit() {
-    this.personCollection = PERSON_COLLECTION_MOCK_DATA;
-    setTimeout(() => {
-      this.personCollectionLoading = false;
-      this.changeDetectorRef.markForCheck();
-    }, 2000);
+    this.loadPersonCollection();
   }
 
   onOpenDetails(person: Person): void {
     this.dialog.open(DetailsDialogComponent, {
       data: {
-        person,
-        personLoading$: of(false).pipe(
-          startWith(true),
-          delay(1500)
-        )
+        person$: this.loadPerson(person)
       }
     });
   }
@@ -52,5 +43,28 @@ export class PersonComponent implements OnInit {
     }
   }
 
-  reloadList(): void {}
+  reloadList(): void {
+    this.loadPersonCollection(true);
+  }
+
+  private loadPerson(person: Person): Observable<Person> {
+    return this.personDataService.getPerson({ id: person.id });
+  }
+
+  private loadPersonCollection(overrideCache = false): void {
+    this.personDataService
+      .getPersonCollection({ overrideCache })
+      .pipe(
+        finalize(() => {
+          this.personCollectionLoading = false;
+          this.changeDetectorRef.markForCheck();
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return EMPTY;
+        })
+      )
+      .subscribe(
+        personCollection => (this.personCollection = personCollection)
+      );
+  }
 }

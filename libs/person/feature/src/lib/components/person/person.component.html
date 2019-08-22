@@ -4,6 +4,12 @@
   (openDetails)="onOpenDetails($event)"
   (sortData)="onSortData($event)"
 ></peo-list>
-<button mat-raised-button color="primary" type="button" (click)="reloadList()">
+<button
+  mat-raised-button
+  color="primary"
+  type="button"
+  (click)="reloadList()"
+  [disabled]="personCollectionLoading"
+>
   RELOAD LIST
 </button>

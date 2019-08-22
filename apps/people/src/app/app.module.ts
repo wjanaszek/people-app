@@ -7,7 +7,8 @@ import {
   API_KEY_NAME,
   API_KEY_VALUE,
   API_URL,
-  CACHE_TIME
+  CACHE_TIME,
+  SharedModule
 } from '@person/person/shared';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app.routing-module';
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    SharedModule,
     HttpClientModule
   ],
   bootstrap: [AppComponent],

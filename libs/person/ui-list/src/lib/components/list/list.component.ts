@@ -30,7 +30,7 @@ export class ListComponent implements OnInit {
   @Input()
   personCollectionLoading: boolean;
 
-  @ViewChild(MatSort, { static: true })
+  @ViewChild(MatSort, { static: false })
   sort: MatSort;
 
   @Output()
@@ -53,6 +53,7 @@ export class ListComponent implements OnInit {
   }
 
   private initSort(): void {
+    this.dataSource.data = [];
     this.dataSource.sort = this.sort;
   }
 }

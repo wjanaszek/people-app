@@ -24,6 +24,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     return next.handle(
       request.clone({
         setHeaders: {
+          ['Content-Type']: 'application/json',
           [`${this.apiKeyName}`]: `${this.apiKeyValue}`
         }
       })

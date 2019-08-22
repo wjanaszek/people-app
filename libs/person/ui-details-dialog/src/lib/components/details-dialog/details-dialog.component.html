@@ -1,15 +1,17 @@
 <h1 mat-dialog-title>User details</h1>
 <div
-  *ngIf="!(data.personLoading$ | async); else spinner"
+  *ngIf="!personLoading; else spinner"
   mat-dialog-content
-  [style.background-url]="data.person.background_url"
+  [style.background-url]="person.background_url"
 >
-  <div>
-    <img [src]="data.person.avatar" alt="person avatar" />
-  </div>
-  <span>ID: {{ data.person.id }}</span>
-  <span>Full name: {{ getPersonFullName(data.person) }}</span>
-  <span>Age: {{ data.person.age }}</span>
+  <ng-container *ngIf="person; else errorMessage">
+    <div>
+      <img [src]="person.avatar" alt="person avatar" />
+    </div>
+    <span>ID: {{ person.id }}</span>
+    <span>Full name: {{ getPersonFullName(person) }}</span>
+    <span>Age: {{ person.age }}</span>
+  </ng-container>
 </div>
 <div mat-dialog-actions>
   <button
@@ -24,4 +26,7 @@
 </div>
 <ng-template #spinner>
   <mat-spinner [diameter]="50"></mat-spinner>
+</ng-template>
+<ng-template #errorMessage>
+  <span class="error">Sorry, something went wrong</span>
 </ng-template>

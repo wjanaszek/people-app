@@ -8,7 +8,8 @@ import { HttpRequestInterceptor } from './interceptors/http-request.interceptor'
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: HttpRequestInterceptor
+      useClass: HttpRequestInterceptor,
+      multi: true
     }
   ]
 })
