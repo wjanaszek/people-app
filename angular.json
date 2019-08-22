@@ -10,7 +10,7 @@
       },
       "root": "apps/people",
       "sourceRoot": "apps/people/src",
-      "prefix": "person",
+      "prefix": "peo",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -121,26 +121,26 @@
     },
     "specification-feature": {
       "projectType": "library",
-      "root": "libs/specification/feature",
-      "sourceRoot": "libs/specification/feature/src",
-      "prefix": "people",
+      "root": "libs/people/specification/feature",
+      "sourceRoot": "libs/people/specification/feature/src",
+      "prefix": "peo",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/specification/feature/tsconfig.lib.json",
-              "libs/specification/feature/tsconfig.spec.json"
+              "libs/people/specification/feature/tsconfig.lib.json",
+              "libs/people/specification/feature/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/specification/feature/**"]
+            "exclude": ["**/node_modules/**", "!libs/people/specification/feature/**"]
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/specification/feature/src/test.ts",
-            "tsConfig": "libs/specification/feature/tsconfig.spec.json",
-            "karmaConfig": "libs/specification/feature/karma.conf.js"
+            "main": "libs/people/specification/feature/src/test.ts",
+            "tsConfig": "libs/people/specification/feature/tsconfig.spec.json",
+            "karmaConfig": "libs/people/specification/feature/karma.conf.js"
           }
         }
       },
@@ -152,26 +152,26 @@
     },
     "person-feature": {
       "projectType": "library",
-      "root": "libs/person/feature",
-      "sourceRoot": "libs/person/feature/src",
-      "prefix": "people",
+      "root": "libs/people/person/feature",
+      "sourceRoot": "libs/people/person/feature/src",
+      "prefix": "peo",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/person/feature/tsconfig.lib.json",
-              "libs/person/feature/tsconfig.spec.json"
+              "libs/people/person/feature/tsconfig.lib.json",
+              "libs/people/person/feature/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/person/feature/**"]
+            "exclude": ["**/node_modules/**", "!libs/people/person/feature/**"]
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/person/feature/src/test.ts",
-            "tsConfig": "libs/person/feature/tsconfig.spec.json",
-            "karmaConfig": "libs/person/feature/karma.conf.js"
+            "main": "libs/people/person/feature/src/test.ts",
+            "tsConfig": "libs/people/person/feature/tsconfig.spec.json",
+            "karmaConfig": "libs/people/person/feature/karma.conf.js"
           }
         }
       },
@@ -183,26 +183,26 @@
     },
     "person-data-access": {
       "projectType": "library",
-      "root": "libs/person/data-access",
-      "sourceRoot": "libs/person/data-access/src",
-      "prefix": "people",
+      "root": "libs/people/person/data-access",
+      "sourceRoot": "libs/people/person/data-access/src",
+      "prefix": "peo",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/person/data-access/tsconfig.lib.json",
-              "libs/person/data-access/tsconfig.spec.json"
+              "libs/people/person/data-access/tsconfig.lib.json",
+              "libs/people/person/data-access/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/person/data-access/**"]
+            "exclude": ["**/node_modules/**", "!libs/people/person/data-access/**"]
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/person/data-access/src/test.ts",
-            "tsConfig": "libs/person/data-access/tsconfig.spec.json",
-            "karmaConfig": "libs/person/data-access/karma.conf.js"
+            "main": "libs/people/person/data-access/src/test.ts",
+            "tsConfig": "libs/people/person/data-access/tsconfig.spec.json",
+            "karmaConfig": "libs/people/person/data-access/karma.conf.js"
           }
         }
       },
@@ -214,29 +214,29 @@
     },
     "person-ui-details-dialog": {
       "projectType": "library",
-      "root": "libs/person/ui-details-dialog",
-      "sourceRoot": "libs/person/ui-details-dialog/src",
-      "prefix": "people",
+      "root": "libs/people/person/ui-details-dialog",
+      "sourceRoot": "libs/people/person/ui-details-dialog/src",
+      "prefix": "peo",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/person/ui-details-dialog/tsconfig.lib.json",
-              "libs/person/ui-details-dialog/tsconfig.spec.json"
+              "libs/people/person/ui-details-dialog/tsconfig.lib.json",
+              "libs/people/person/ui-details-dialog/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
-              "!libs/person/ui-details-dialog/**"
+              "!libs/people/person/ui-details-dialog/**"
             ]
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/person/ui-details-dialog/src/test.ts",
-            "tsConfig": "libs/person/ui-details-dialog/tsconfig.spec.json",
-            "karmaConfig": "libs/person/ui-details-dialog/karma.conf.js"
+            "main": "libs/people/person/ui-details-dialog/src/test.ts",
+            "tsConfig": "libs/people/person/ui-details-dialog/tsconfig.spec.json",
+            "karmaConfig": "libs/people/person/ui-details-dialog/karma.conf.js"
           }
         }
       },
@@ -248,26 +248,26 @@
     },
     "person-ui-list": {
       "projectType": "library",
-      "root": "libs/person/ui-list",
-      "sourceRoot": "libs/person/ui-list/src",
-      "prefix": "people",
+      "root": "libs/people/person/ui-list",
+      "sourceRoot": "libs/people/person/ui-list/src",
+      "prefix": "peo",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/person/ui-list/tsconfig.lib.json",
-              "libs/person/ui-list/tsconfig.spec.json"
+              "libs/people/person/ui-list/tsconfig.lib.json",
+              "libs/people/person/ui-list/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/person/ui-list/**"]
+            "exclude": ["**/node_modules/**", "!libs/people/person/ui-list/**"]
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/person/ui-list/src/test.ts",
-            "tsConfig": "libs/person/ui-list/tsconfig.spec.json",
-            "karmaConfig": "libs/person/ui-list/karma.conf.js"
+            "main": "libs/people/person/ui-list/src/test.ts",
+            "tsConfig": "libs/people/person/ui-list/tsconfig.spec.json",
+            "karmaConfig": "libs/people/person/ui-list/karma.conf.js"
           }
         }
       },
@@ -279,26 +279,26 @@
     },
     "person-resource": {
       "projectType": "library",
-      "root": "libs/person/resource",
-      "sourceRoot": "libs/person/resource/src",
-      "prefix": "people",
+      "root": "libs/people/person/resource",
+      "sourceRoot": "libs/people/person/resource/src",
+      "prefix": "peo",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/person/resource/tsconfig.lib.json",
-              "libs/person/resource/tsconfig.spec.json"
+              "libs/people/person/resource/tsconfig.lib.json",
+              "libs/people/person/resource/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/person/resource/**"]
+            "exclude": ["**/node_modules/**", "!libs/people/person/resource/**"]
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/person/resource/src/test.ts",
-            "tsConfig": "libs/person/resource/tsconfig.spec.json",
-            "karmaConfig": "libs/person/resource/karma.conf.js"
+            "main": "libs/people/person/resource/src/test.ts",
+            "tsConfig": "libs/people/person/resource/tsconfig.spec.json",
+            "karmaConfig": "libs/people/person/resource/karma.conf.js"
           }
         }
       },
@@ -310,26 +310,26 @@
     },
     "person-shared": {
       "projectType": "library",
-      "root": "libs/person/shared",
-      "sourceRoot": "libs/person/shared/src",
+      "root": "libs/people/person/shared",
+      "sourceRoot": "libs/people/person/shared/src",
       "prefix": "peo",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/person/shared/tsconfig.lib.json",
-              "libs/person/shared/tsconfig.spec.json"
+              "libs/people/person/shared/tsconfig.lib.json",
+              "libs/people/person/shared/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/**"]
+            "exclude": ["**/node_modules/**", "!libs/people/shared/**"]
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/person/shared/src/test.ts",
-            "tsConfig": "libs/person/shared/tsconfig.spec.json",
-            "karmaConfig": "libs/pesron/shared/karma.conf.js"
+            "main": "libs/people/person/shared/src/test.ts",
+            "tsConfig": "libs/people/person/shared/tsconfig.spec.json",
+            "karmaConfig": "libs/people/person/shared/karma.conf.js"
           }
         }
       },

@@ -5,12 +5,12 @@ const routes: Route[] = [
   {
     path: 'person',
     loadChildren: () =>
-      import('@person/person/feature').then(m => m.PersonFeatureModule)
+      import('@people/person/feature').then(m => m.PersonFeatureModule)
   },
   {
     path: 'specification',
     loadChildren: () =>
-      import('@person/specification/feature').then(
+      import('@people/specification/feature').then(
         m => m.SpecificationFeatureModule
       )
   },
@@ -22,7 +22,6 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)]
 })
 export class AppRoutingModule {}

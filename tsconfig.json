@@ -16,17 +16,17 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@person/specification/feature": [
-        "libs/specification/feature/src/index.ts"
+      "@people/specification/feature": [
+        "libs/people/specification/feature/src/index.ts"
       ],
-      "@person/person/feature": ["libs/person/feature/src/index.ts"],
-      "@person/person/data-access": ["libs/person/data-access/src/index.ts"],
-      "@person/person/ui-details-dialog": [
-        "libs/person/ui-details-dialog/src/index.ts"
+      "@people/person/feature": ["libs/people/person/feature/src/index.ts"],
+      "@people/person/data-access": ["libs/people/person/data-access/src/index.ts"],
+      "@people/person/ui-details-dialog": [
+        "libs/people/person/ui-details-dialog/src/index.ts"
       ],
-      "@person/person/ui-list": ["libs/person/ui-list/src/index.ts"],
-      "@person/person/resource": ["libs/person/resource/src/index.ts"],
-      "@person/person/shared": ["libs/person/shared/src/index.ts"]
+      "@people/person/ui-list": ["libs/people/person/ui-list/src/index.ts"],
+      "@people/person/resource": ["libs/people/person/resource/src/index.ts"],
+      "@people/person/shared": ["libs/people/person/shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
