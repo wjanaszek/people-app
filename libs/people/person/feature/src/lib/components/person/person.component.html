@@ -1,4 +1,5 @@
 <peo-list
+  [isError]="isError"
   [personCollection]="personCollection"
   [personCollectionLoading]="personCollectionLoading"
   (openDetails)="onOpenDetails($event)"
@@ -6,6 +7,7 @@
 ></peo-list>
 <button
   mat-raised-button
+  class="person-collection--reload__button"
   color="primary"
   type="button"
   (click)="reloadList()"

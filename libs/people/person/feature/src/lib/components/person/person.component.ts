@@ -1,12 +1,16 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Person, PersonHelper } from '@people/person/resource';
+import {
+  Person,
+  PERSON_COLLECTION_MOCK_DATA,
+  PersonHelper
+} from '@people/person/resource';
 import { MatDialog, Sort } from '@angular/material';
-import { EMPTY, Observable, Subject } from 'rxjs';
-import { catchError, filter, finalize, map, takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { DetailsDialogComponent } from '@people/person/ui-details-dialog';
 import { PersonDataService } from '@people/person/data-access';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'peo-person',
@@ -14,6 +18,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./person.component.scss']
 })
 export class PersonComponent implements OnDestroy, OnInit {
+  isError: boolean;
   personCollection: Person[];
   personCollectionLoading: boolean;
 
@@ -23,8 +28,8 @@ export class PersonComponent implements OnDestroy, OnInit {
     private activatedRoute: ActivatedRoute,
     private changeDetectorRef: ChangeDetectorRef,
     private dialog: MatDialog,
-    private personDataService: PersonDataService,
-    private router: Router
+    private location: Location,
+    private personDataService: PersonDataService
   ) {}
 
   ngOnDestroy() {
@@ -38,6 +43,7 @@ export class PersonComponent implements OnDestroy, OnInit {
   }
 
   onOpenDetails(person: Person): void {
+    this.location.replaceState(`person/${person.id}`);
     this.openDetailsDialog(person.id);
   }
 
@@ -69,30 +75,37 @@ export class PersonComponent implements OnDestroy, OnInit {
   }
 
   private loadPersonCollection(overrideCache = false): void {
+    this.isError = false;
     this.personCollectionLoading = true;
     this.changeDetectorRef.markForCheck();
 
-    this.personDataService
-      .getPersonCollection({ overrideCache })
-      .pipe(
-        finalize(() => {
-          this.personCollectionLoading = false;
-          this.changeDetectorRef.markForCheck();
-        }),
-        catchError((err: HttpErrorResponse) => {
-          return EMPTY;
-        })
-      )
-      .subscribe(
-        personCollection => (this.personCollection = personCollection)
-      );
+    this.personCollection = PERSON_COLLECTION_MOCK_DATA;
+    this.personCollectionLoading = false;
+    // this.personDataService
+    //   .getPersonCollection({ overrideCache })
+    //   .pipe(
+    //     finalize(() => {
+    //       this.personCollectionLoading = false;
+    //       this.changeDetectorRef.markForCheck();
+    //     }),
+    //     catchError((err: HttpErrorResponse) => {
+    //       this.isError = true;
+    //       return EMPTY;
+    //     })
+    //   )
+    //   .subscribe(
+    //     personCollection => (this.personCollection = personCollection)
+    //   );
   }
 
   private openDetailsDialog(id: number): void {
-    this.dialog.open(DetailsDialogComponent, {
-      data: {
-        person$: this.loadPerson(id)
-      }
-    });
+    this.dialog
+      .open(DetailsDialogComponent, {
+        data: {
+          person$: this.loadPerson(id)
+        }
+      })
+      .afterClosed()
+      .subscribe(() => this.location.replaceState('person'));
   }
 }
