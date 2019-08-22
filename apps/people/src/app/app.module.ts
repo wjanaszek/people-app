@@ -3,7 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { API_KEY_NAME, API_KEY_VALUE, API_URL, CACHE_TIME, SharedModule } from '@people/person/shared';
+import {
+  API_KEY_NAME,
+  API_KEY_VALUE,
+  API_URL,
+  CACHE_TIME,
+  SharedModule
+} from '@people/person/shared';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app.routing-module';
 import { HttpClientModule } from '@angular/common/http';

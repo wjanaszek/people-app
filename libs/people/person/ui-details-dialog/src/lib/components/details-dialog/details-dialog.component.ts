@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  OnInit
+} from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { Memoize, Person, PersonHelper } from '@people/person/resource';
 import { EMPTY, Observable } from 'rxjs';

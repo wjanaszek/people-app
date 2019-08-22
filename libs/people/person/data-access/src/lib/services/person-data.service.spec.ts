@@ -1,7 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
 import { PersonDataService } from './person-data.service';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController
+} from '@angular/common/http/testing';
 import { Person } from '@people/person/resource';
 import { CACHE_TIME, interpolateUrl } from '@people/person/shared';
 

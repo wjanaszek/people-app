@@ -1,5 +1,5 @@
 {
-  "npmScope": "people",
+  "npmScope": "peo",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": "*",

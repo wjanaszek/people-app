@@ -56,8 +56,12 @@
         "allow": [],
         "depConstraints": [
           {
-            "sourceTag": "*",
-            "onlyDependOnLibsWithTags": ["*"]
+            "sourceTag": "type:application",
+            "onlyDependOnLibsWithTags": ["type:feature", "type:data-access", "type:ui"]
+          },
+          {
+            "sourceTag": "type:feature",
+            "onlyDependOnLibsWithTags": ["type:ui", "type:resource", "type:data-access"]
           }
         ]
       }
