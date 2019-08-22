@@ -11,10 +11,16 @@ import {
 } from '@person/person/shared';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app.routing-module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule
+  ],
   bootstrap: [AppComponent],
   providers: [
     {
