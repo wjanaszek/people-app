@@ -2,7 +2,7 @@
 <div
   *ngIf="!personLoading; else spinner"
   mat-dialog-content
-  [style.background-url]="person.background_url"
+  [style.background-url]="person?.background_url"
 >
   <ng-container *ngIf="person; else errorMessage">
     <div>
@@ -13,7 +13,7 @@
     <span>Age: {{ person.age }}</span>
   </ng-container>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions class="details-dialog--actions-container">
   <button
     mat-raised-button
     mat-dialog-close
@@ -25,7 +25,9 @@
   </button>
 </div>
 <ng-template #spinner>
-  <mat-spinner [diameter]="50"></mat-spinner>
+  <div class="details-dialog--spinner-container">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
 </ng-template>
 <ng-template #errorMessage>
   <span class="error">Sorry, something went wrong</span>

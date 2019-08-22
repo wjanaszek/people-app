@@ -1,37 +1,44 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Person, PersonHelper } from '@people/person/resource';
 import { MatDialog, Sort } from '@angular/material';
-import { EMPTY, Observable } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
+import { EMPTY, Observable, Subject } from 'rxjs';
+import { catchError, filter, finalize, map, takeUntil } from 'rxjs/operators';
 import { DetailsDialogComponent } from '@people/person/ui-details-dialog';
 import { PersonDataService } from '@people/person/data-access';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'peo-person',
   templateUrl: './person.component.html',
   styleUrls: ['./person.component.scss']
 })
-export class PersonComponent implements OnInit {
+export class PersonComponent implements OnDestroy, OnInit {
   personCollection: Person[];
-  personCollectionLoading = true;
+  personCollectionLoading: boolean;
+
+  private ngUnsubscribe = new Subject<void>();
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private changeDetectorRef: ChangeDetectorRef,
     private dialog: MatDialog,
-    private personDataService: PersonDataService
+    private personDataService: PersonDataService,
+    private router: Router
   ) {}
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
 
   ngOnInit() {
     this.loadPersonCollection();
+    this.initRouteParams();
   }
 
   onOpenDetails(person: Person): void {
-    this.dialog.open(DetailsDialogComponent, {
-      data: {
-        person$: this.loadPerson(person)
-      }
-    });
+    this.openDetailsDialog(person.id);
   }
 
   onSortData(sort: Sort): void {
@@ -47,11 +54,24 @@ export class PersonComponent implements OnInit {
     this.loadPersonCollection(true);
   }
 
-  private loadPerson(person: Person): Observable<Person> {
-    return this.personDataService.getPerson({ id: person.id });
+  private initRouteParams(): void {
+    this.activatedRoute.params
+      .pipe(
+        filter(params => !!params && !!params.id),
+        map(params => params.id),
+        takeUntil(this.ngUnsubscribe)
+      )
+      .subscribe(id => this.openDetailsDialog(id));
+  }
+
+  private loadPerson(id: number): Observable<Person> {
+    return this.personDataService.getPerson({ id });
   }
 
   private loadPersonCollection(overrideCache = false): void {
+    this.personCollectionLoading = true;
+    this.changeDetectorRef.markForCheck();
+
     this.personDataService
       .getPersonCollection({ overrideCache })
       .pipe(
@@ -66,5 +86,13 @@ export class PersonComponent implements OnInit {
       .subscribe(
         personCollection => (this.personCollection = personCollection)
       );
+  }
+
+  private openDetailsDialog(id: number): void {
+    this.dialog.open(DetailsDialogComponent, {
+      data: {
+        person$: this.loadPerson(id)
+      }
+    });
   }
 }
