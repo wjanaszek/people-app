@@ -37,5 +37,8 @@
         (click)="onOpenDetails(person)"
       ></mat-row>
     </mat-table>
+    <div *ngIf="isError" class="error">
+      <span>Sorry, something went wrong</span>
+    </div>
   </div>
 </div>

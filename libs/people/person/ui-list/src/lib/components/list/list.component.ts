@@ -20,11 +20,15 @@ export class ListComponent implements OnInit {
   dataSource = new MatTableDataSource<Person>();
   displayedColumns = ['avatar', 'firstName', 'lastName'];
 
+  @Input()
+  isError: boolean;
+
   @Output()
   openDetails = new EventEmitter<Person>();
 
   @Input()
   set personCollection(personCollection: Person[]) {
+    console.log(this.dataSource.data);
     this.dataSource.data = personCollection;
   }
   @Input()
@@ -53,7 +57,7 @@ export class ListComponent implements OnInit {
   }
 
   private initSort(): void {
-    this.dataSource.data = [];
+    this.dataSource.data = this.dataSource.data || [];
     this.dataSource.sort = this.sort;
   }
 }

@@ -5,7 +5,7 @@ import {
   Inject,
   OnInit
 } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Memoize, Person, PersonHelper } from '@people/person/resource';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
@@ -23,8 +23,13 @@ export class DetailsDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: { person$: Observable<Person> },
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private dialogRef: MatDialogRef<DetailsDialogComponent>
   ) {}
+
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
 
   @Memoize()
   getPersonFullName(person: Person): string {

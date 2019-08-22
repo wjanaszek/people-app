@@ -16,8 +16,8 @@
 <div mat-dialog-actions class="details-dialog--actions-container">
   <button
     mat-raised-button
-    mat-dialog-close
     cdkFocusInitial
+    (click)="closeDialog()"
     color="primary"
     type="button"
   >
