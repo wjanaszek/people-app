@@ -2,6 +2,10 @@
   padding-bottom: 15px;
 }
 
+span {
+  cursor: pointer;
+}
+
 span:not(:first-of-type) {
   padding-left: 15px;
 }
