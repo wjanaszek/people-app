@@ -7,6 +7,8 @@ import { API_KEY_NAME, API_KEY_VALUE, API_URL, CACHE_TIME, SharedModule } from '
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app.routing-module';
 import { HttpClientModule } from '@angular/common/http';
+import { PeopleSharedUiNavbarModule } from '@people/shared/ui-navbar';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,8 +16,10 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    RouterModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    PeopleSharedUiNavbarModule
   ],
   bootstrap: [AppComponent],
   providers: [

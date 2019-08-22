@@ -34,6 +34,9 @@
     },
     "person-shared": {
       "tags": ["scope:person", "type:feature"]
+    },
+    "people-shared-ui-navbar": {
+      "tags": ["scope:people", "type:ui"]
     }
   }
 }

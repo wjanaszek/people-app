@@ -132,7 +132,10 @@
               "libs/people/specification/feature/tsconfig.lib.json",
               "libs/people/specification/feature/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/people/specification/feature/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/people/specification/feature/**"
+            ]
           }
         },
         "test": {
@@ -194,7 +197,10 @@
               "libs/people/person/data-access/tsconfig.lib.json",
               "libs/people/person/data-access/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/people/person/data-access/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/people/person/data-access/**"
+            ]
           }
         },
         "test": {
@@ -330,6 +336,40 @@
             "main": "libs/people/person/shared/src/test.ts",
             "tsConfig": "libs/people/person/shared/tsconfig.spec.json",
             "karmaConfig": "libs/people/person/shared/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "people-shared-ui-navbar": {
+      "projectType": "library",
+      "root": "libs/people/shared/ui-navbar",
+      "sourceRoot": "libs/people/shared/ui-navbar/src",
+      "prefix": "peo",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/people/shared/ui-navbar/tsconfig.lib.json",
+              "libs/people/shared/ui-navbar/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/people/shared/ui-navbar/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/people/shared/ui-navbar/src/test.ts",
+            "tsConfig": "libs/people/shared/ui-navbar/tsconfig.spec.json",
+            "karmaConfig": "libs/people/shared/ui-navbar/karma.conf.js"
           }
         }
       },

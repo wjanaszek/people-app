@@ -20,13 +20,18 @@
         "libs/people/specification/feature/src/index.ts"
       ],
       "@people/person/feature": ["libs/people/person/feature/src/index.ts"],
-      "@people/person/data-access": ["libs/people/person/data-access/src/index.ts"],
+      "@people/person/data-access": [
+        "libs/people/person/data-access/src/index.ts"
+      ],
       "@people/person/ui-details-dialog": [
         "libs/people/person/ui-details-dialog/src/index.ts"
       ],
       "@people/person/ui-list": ["libs/people/person/ui-list/src/index.ts"],
       "@people/person/resource": ["libs/people/person/resource/src/index.ts"],
-      "@people/person/shared": ["libs/people/person/shared/src/index.ts"]
+      "@people/person/shared": ["libs/people/person/shared/src/index.ts"],
+      "@people/shared/ui-navbar": [
+        "libs/people/shared/ui-navbar/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
