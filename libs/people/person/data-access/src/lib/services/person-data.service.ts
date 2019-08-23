@@ -11,8 +11,8 @@ import { GetPersonCollectionRequestPayload } from '../resources/request-payloads
 })
 export class PersonDataService {
   readonly endpoints = {
-    getPerson: this.apiUrl + '/person/:id',
-    getPersonCollection: this.apiUrl + '/person'
+    getPerson: this.apiUrl + '/people/:id',
+    getPersonCollection: this.apiUrl + '/people'
   };
 
   lastRequestTimestamp: number;
