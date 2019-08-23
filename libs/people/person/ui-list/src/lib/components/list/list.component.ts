@@ -28,7 +28,6 @@ export class ListComponent implements OnInit {
 
   @Input()
   set personCollection(personCollection: Person[]) {
-    console.log(this.dataSource.data);
     this.dataSource.data = personCollection;
   }
   @Input()
