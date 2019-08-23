@@ -2,15 +2,19 @@
 <div
   *ngIf="!personLoading; else spinner"
   mat-dialog-content
-  [style.background-url]="person?.background_url"
+  [style.background-image]="'url(' + person?.background_url + ')'"
 >
   <ng-container *ngIf="person; else errorMessage">
-    <div>
-      <img [src]="person.avatar" alt="person avatar" />
+    <div class="details-dialog--container">
+      <div class="details-dialog--container__avatar">
+        <img [src]="person.avatar" alt="person avatar" />
+      </div>
+      <div class="details-dialog--container__info-fields">
+        <span>ID: {{ person.id }}</span>
+        <span>Full name: {{ getPersonFullName(person) }}</span>
+        <span>Age: {{ person.age }}</span>
+      </div>
     </div>
-    <span>ID: {{ person.id }}</span>
-    <span>Full name: {{ getPersonFullName(person) }}</span>
-    <span>Age: {{ person.age }}</span>
   </ng-container>
 </div>
 <div mat-dialog-actions class="details-dialog--actions-container">

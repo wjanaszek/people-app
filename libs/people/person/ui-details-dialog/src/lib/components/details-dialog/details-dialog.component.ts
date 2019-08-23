@@ -9,6 +9,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Memoize, Person, PersonHelper } from '@people/person/resource';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
+import {
+  DomSanitizer,
+  SafeResourceUrl,
+  SafeStyle
+} from '@angular/platform-browser';
 
 @Component({
   selector: 'peo-details-dialog',
@@ -24,7 +29,8 @@ export class DetailsDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     public data: { person$: Observable<Person> },
     private changeDetectorRef: ChangeDetectorRef,
-    private dialogRef: MatDialogRef<DetailsDialogComponent>
+    private dialogRef: MatDialogRef<DetailsDialogComponent>,
+    private sanitizer: DomSanitizer
   ) {}
 
   closeDialog(): void {
@@ -38,6 +44,11 @@ export class DetailsDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.initPerson();
+  }
+
+  @Memoize()
+  sanitizeStyle(url: string): SafeStyle {
+    return this.sanitizer.bypassSecurityTrustStyle(url);
   }
 
   private initPerson(): void {

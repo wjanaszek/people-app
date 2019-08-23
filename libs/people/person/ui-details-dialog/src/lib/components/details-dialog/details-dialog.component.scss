@@ -12,6 +12,29 @@
   justify-content: center;
 }
 
+.details-dialog--container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.details-dialog--container__avatar {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  margin-right: 5px;
+}
+
+.details-dialog--container__info-fields {
+  flex-grow: 3;
+}
+
+.details-dialog--container__info-fields > span {
+  display: block;
+  margin-top: 5px;
+}
+
 .error {
   color: #ff0000;
 }
