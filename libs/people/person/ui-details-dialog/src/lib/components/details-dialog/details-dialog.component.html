@@ -4,24 +4,23 @@
   mat-dialog-content
   [style.background-image]="'url(' + person?.background_url + ')'"
 >
-  <ng-container *ngIf="person; else errorMessage">
-    <div class="details-dialog--container">
-      <div class="details-dialog--container__avatar">
-        <img [src]="person.avatar" alt="person avatar" />
-      </div>
-      <div class="details-dialog--container__info-fields">
-        <span>ID: {{ person.id }}</span>
-        <span>Full name: {{ getPersonFullName(person) }}</span>
-        <span>Age: {{ person.age }}</span>
-      </div>
+  <div *ngIf="!isError; else errorMessage" class="details-dialog--container">
+    <div class="details-dialog--container__avatar">
+      <img [src]="person.avatar" alt="person avatar" />
     </div>
-  </ng-container>
+    <div class="details-dialog--container__info-fields">
+      <span>ID: {{ person.id }}</span>
+      <span>Full name: {{ getPersonFullName(person) }}</span>
+      <span>Age: {{ person.age }}</span>
+    </div>
+  </div>
 </div>
 <div mat-dialog-actions class="details-dialog--actions-container">
   <button
     mat-raised-button
     cdkFocusInitial
     (click)="closeDialog()"
+    class="details-dialog--actions-close-button"
     color="primary"
     type="button"
   >
