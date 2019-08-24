@@ -5,12 +5,13 @@ import {
   PersonHelper
 } from '@people/person/resource';
 import { MatDialog, Sort } from '@angular/material';
-import { Observable, Subject } from 'rxjs';
-import { filter, map, takeUntil } from 'rxjs/operators';
+import { EMPTY, Observable, Subject } from 'rxjs';
+import { catchError, filter, finalize, map, takeUntil } from 'rxjs/operators';
 import { DetailsDialogComponent } from '@people/person/ui-details-dialog';
 import { PersonDataService } from '@people/person/data-access';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'peo-person',
@@ -79,23 +80,23 @@ export class PersonComponent implements OnDestroy, OnInit {
     this.personCollectionLoading = true;
     this.changeDetectorRef.markForCheck();
 
-    this.personCollection = PERSON_COLLECTION_MOCK_DATA;
-    this.personCollectionLoading = false;
-    // this.personDataService
-    //   .getPersonCollection({ overrideCache })
-    //   .pipe(
-    //     finalize(() => {
-    //       this.personCollectionLoading = false;
-    //       this.changeDetectorRef.markForCheck();
-    //     }),
-    //     catchError((err: HttpErrorResponse) => {
-    //       this.isError = true;
-    //       return EMPTY;
-    //     })
-    //   )
-    //   .subscribe(
-    //     personCollection => (this.personCollection = personCollection)
-    //   );
+    // this.personCollection = PERSON_COLLECTION_MOCK_DATA;
+    // this.personCollectionLoading = false;
+    this.personDataService
+      .getPersonCollection({ overrideCache })
+      .pipe(
+        finalize(() => {
+          this.personCollectionLoading = false;
+          this.changeDetectorRef.markForCheck();
+        }),
+        catchError((err: HttpErrorResponse) => {
+          this.isError = true;
+          return EMPTY;
+        })
+      )
+      .subscribe(
+        personCollection => (this.personCollection = personCollection)
+      );
   }
 
   private openDetailsDialog(id: number): void {
