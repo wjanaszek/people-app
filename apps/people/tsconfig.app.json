@@ -1,9 +1,16 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
+    "outDir": "../../dist/out-tsc/apps/people",
     "types": []
   },
-  "include": ["**/*.ts"],
-  "exclude": ["src/test-setup.ts", "**/*.spec.ts"]
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts",
+    "../../libs/**/*.spec.ts"
+  ],
+  "include": [
+    "**/*.ts",
+    "../../apps/**/*.ts"
+  ]
 }
