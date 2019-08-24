@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ListComponent } from './list.component';
 import {
   MatProgressSpinnerModule,
+  MatRow,
   MatSortModule,
   MatTableModule,
   Sort
@@ -57,6 +58,7 @@ describe('ListComponent', () => {
     component = fixture.componentInstance;
     testHostComponent = testHostFixture.componentInstance;
     fixture.detectChanges();
+    testHostFixture.detectChanges();
   });
 
   it('should create', () => {
@@ -127,7 +129,7 @@ describe('ListComponent', () => {
 
   it('should emit person to parent when clicking on row', () => {
     let person: Person;
-    const row = testHostFixture.debugElement.query(By.css('.mat-row'));
+    const row = testHostFixture.debugElement.query(By.directive(MatRow));
     expect(row).toBeDefined();
     component.openDetails.subscribe(val => (person = val));
     row.triggerEventHandler('click', null);
