@@ -50,10 +50,9 @@ export class PersonComponent implements OnDestroy, OnInit {
 
   onSortData(sort: Sort): void {
     if (sort.active === 'lastName') {
-      this.personCollection = PersonHelper.sortByLastName(
-        this.personCollection,
-        sort
-      );
+      this.personCollection = [
+        ...PersonHelper.sortByLastName(this.personCollection, sort)
+      ];
     }
   }
 
@@ -82,6 +81,7 @@ export class PersonComponent implements OnDestroy, OnInit {
 
     // this.personCollection = PERSON_COLLECTION_MOCK_DATA;
     // this.personCollectionLoading = false;
+    console.log('loading data from data service');
     this.personDataService
       .getPersonCollection({ overrideCache })
       .pipe(
