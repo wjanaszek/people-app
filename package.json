@@ -55,7 +55,6 @@
     "@types/jasmine": "~2.8.8",
     "@types/node": "~8.9.4",
     "codelyzer": "~5.0.1",
-    "cypress": "3.4.1",
     "dotenv": "6.2.0",
     "eslint": "6.1.0",
     "husky": "^3.0.4",
@@ -68,6 +67,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "lint-staged": "^9.2.3",
     "prettier": "1.16.4",
+    "protractor": "^5.4.2",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.4.5"

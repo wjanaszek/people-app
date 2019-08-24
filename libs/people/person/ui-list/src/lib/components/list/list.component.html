@@ -34,6 +34,7 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row
         *matRowDef="let person; columns: displayedColumns"
+        [id]="person.id"
         (click)="onOpenDetails(person)"
       ></mat-row>
     </mat-table>
