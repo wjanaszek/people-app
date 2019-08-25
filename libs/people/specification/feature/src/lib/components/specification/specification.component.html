@@ -1,1 +1,92 @@
-<p>specification works!</p>
+<div>
+  <h1>Table of contents</h1>
+  <ol>
+    <li>
+      <a (click)="scrollToElement(projectStructure)">Project structure</a>
+    </li>
+    <li>
+      <a (click)="scrollToElement(dataAccessLib)">Data access module</a>
+    </li>
+    <li>
+      <a (click)="scrollToElement(personListComponent)">Person list</a>
+    </li>
+    <li>
+      <a (click)="scrollToElement(personDetailsDialogComponent)"
+        >Person details dialog</a
+      >
+    </li>
+  </ol>
+
+  <h3 #projectStructure>Project structure</h3>
+  <p>
+    Project follows the module structure proposed by nrwl. There is one app,
+    called 'people', and libs, used under this app.
+  </p>
+  <p>
+    'People' app contains only a routing module. This routing module lazy loads
+    given libs based on path in URL.
+  </p>
+  <p>There are 3 main grouping folders used for libs:</p>
+  <ul>
+    <li>
+      <a (click)="scrollToElement(personLib)">person</a> - used under '/person'
+      URL
+    </li>
+    <li>
+      <a (click)="scrollToElement(specificationLib)">specification</a> - used
+      under '/specification' URL
+    </li>
+    <li>
+      <a (click)="scrollToElement(sharedLib)">shared</a> - containing dummy
+      components, resources etc. used by all libs
+    </li>
+  </ul>
+
+  <h4 #personLib>Person library</h4>
+  <p>
+    Contains a feature module with routing under 'person' path, and a
+    <a (click)="scrollToElement(dataAccessLib)">data access module</a>, used to
+    communicate with API. Routing module is placed in feature library. 'Person'
+    smart component is also responsible for opening a dialog with person details
+    after entering an ID in URL. Dummy components, used by this feature library,
+    are placed in
+    <a (click)="scrollToElement(personListComponent)">person list</a> and
+    <a (click)="scrollToElement(personDetailsDialogComponent)">details dialog</a
+    >.
+  </p>
+
+  <h4 #specificationLib>Specification library</h4>
+  <p>
+    Contains a feature module with routing under 'specification' path, and a
+    smart component with specification of people app.
+  </p>
+
+  <h4 #sharedLib>Shared library</h4>
+  <p>
+    Contains a shared navbar component which is used in app root component, to
+    navigate between person list and specification.
+  </p>
+
+  <h3 #dataAccessLib>Data access module</h3>
+  <p>
+    Contains a data service used to get person collection and person details
+    data. It also provides a cache mechanism, based on comparing timestamp of
+    last request with the new one.
+  </p>
+
+  <h3 #personListComponent>Person list</h3>
+  <p>
+    Dummy component with onPush change detection strategy. Data is passed only
+    by input and output properties. Contains an Angular Material table with sort
+    header. Displays a loading indicator or error message, depending on data
+    from parent.
+  </p>
+
+  <h3 #personDetailsDialogComponent>Person details dialog</h3>
+  <p>
+    Dummy component with onPush change detection strategy. Data is passed by
+    injecting an object of properties from parent when opening a dialog.
+    Displays a loading indicator or error message, depending on result of
+    loading given person.
+  </p>
+</div>
