@@ -6,6 +6,107 @@ This project was generated using [Nx](https://nx.dev).
 
 🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
 
+## Table of contents
+  <ol>
+    <li>
+      <a>Project structure</a>
+    </li>
+    <li>
+      <a>Styles</a>
+    </li>
+    <li>
+      <a>Data access module</a>
+    </li>
+    <li>
+      <a>Person list</a>
+    </li>
+    <li>
+      <a>Person details dialog</a
+      >
+    </li>
+  </ol>
+
+### Project structure
+  <p>
+    Project follows the module structure proposed by nrwl. There is one app,
+    called 'people', and libs, used under this app.
+  </p>
+  <p>
+    'People' app contains only a routing module. This routing module lazy loads
+    given libs based on path in URL.
+  </p>
+  <p>There are 3 main grouping folders used for libs:</p>
+  <ul>
+    <li>
+      <a>person</a> - used under '/person'
+      URL
+    </li>
+    <li>
+      <a>specification</a> - used
+      under '/specification' URL
+    </li>
+    <li>
+      <a>shared</a> - containing dummy
+      components, resources etc. used by all libs
+    </li>
+  </ul>
+
+#### Person library
+  <p>
+    Contains a feature module with routing under 'person' path, and a
+    <a>data access module</a>, used to
+    communicate with API. Routing module is placed in feature library. 'Person'
+    smart component is also responsible for opening a dialog with person details
+    after entering an ID in URL. Dummy components, used by this feature library,
+    are placed in
+    <a>person list</a> and
+    <a>details dialog</a
+    >.
+  </p>
+
+#### Specification library
+  <p>
+    Contains a feature module with routing under 'specification' path, and a
+    smart component with specification of people app.
+  </p>
+
+#### Shared library
+  <p>
+    Contains a shared navbar component which is used in app root component, to
+    navigate between person list and specification.
+  </p>
+
+### Styles
+  <p>
+    SCSS and flex is used.
+  </p>
+
+### Data access module
+  <p>
+    Contains a data service used to get person collection and person details
+    data. It also provides a cache mechanism, based on comparing timestamp of
+    last request with the new one. There is a possibility to get a mock data
+    instead of real after uncommenting few lines.
+  </p>
+
+### Person list
+  <p>
+    Dummy component with onPush change detection strategy. Data is passed only
+    by input and output properties. Contains an Angular Material table with sort
+    header. Displays a loading indicator or error message, depending on data
+    from parent.
+  </p>
+
+### Person details dialog
+  <p>
+    Dummy component with onPush change detection strategy. Data is passed by
+    injecting an object of properties from parent when opening a dialog.
+    Displays a loading indicator or error message, depending on result of
+    loading given person. Component is made responsive for mobile phones and
+    desktops using flex.
+  </p>
+
+
 ## Quick Start & Documentation
 
 [Nx Documentation](https://nx.dev/angular)
