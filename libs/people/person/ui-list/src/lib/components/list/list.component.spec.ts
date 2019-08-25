@@ -9,7 +9,7 @@ import {
   Sort
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Person } from '@people/person/resource';
+import { Person, PERSON_DETAILS_MOCK_DATA } from '@people/person/resource';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
@@ -164,7 +164,7 @@ describe('ListComponent', () => {
   });
 
   it('should contain last name of person in given column in table', () => {
-    const person = { id: 1, last_name: '' } as Person;
+    const person = PERSON_DETAILS_MOCK_DATA;
     testHostComponent.personCollection = [person];
     testHostFixture.detectChanges();
 
@@ -178,7 +178,7 @@ describe('ListComponent', () => {
 
   it('should emit person to parent when clicking on row', () => {
     spyOn(testHostComponent, 'onOpenDetails').and.callThrough();
-    const person = { id: 1 } as Person;
+    const person = PERSON_DETAILS_MOCK_DATA;
     testHostComponent.personCollection = [person];
     testHostFixture.detectChanges();
 
@@ -192,7 +192,7 @@ describe('ListComponent', () => {
   it('should emit sort to parent when clicking on last name column in table', () => {
     spyOn(testHostComponent, 'onSortData').and.callThrough();
     const sort = { active: 'lastName', direction: 'asc' };
-    testHostComponent.personCollection = [{ id: 1 } as Person];
+    testHostComponent.personCollection = [PERSON_DETAILS_MOCK_DATA];
     testHostFixture.detectChanges();
 
     const lastNameColumnHeader = testHostFixture.debugElement.query(

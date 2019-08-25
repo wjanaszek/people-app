@@ -145,7 +145,7 @@ describe('DetailsDialogComponent', () => {
     component.personLoading = false;
 
     const personDetails = fixture.debugElement.queryAll(
-      By.css('.details-dialog--container__info-fields > span')
+      By.css('.details-dialog--container__info-fields > div')
     );
     expect(personDetails.length).toBe(3);
     expect(personDetails[0].nativeElement.innerText).toBe(
