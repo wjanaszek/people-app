@@ -6,6 +6,7 @@ import { PersonComponent } from './components/person/person.component';
 import { PersonFeatureRoutingModule } from './person-feature.routing-module';
 import { MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
 import { PersonDataAccessModule } from '@people/person/data-access';
+import { PersonSharedModule } from '@people/person/shared';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { PersonDataAccessModule } from '@people/person/data-access';
     PersonDataAccessModule,
     PersonUiListModule,
     PersonUiDetailsDialogModule,
-    PersonFeatureRoutingModule
+    PersonFeatureRoutingModule,
+    PersonSharedModule
   ],
   declarations: [PersonComponent]
 })

@@ -8,11 +8,11 @@ import {
   API_KEY_VALUE,
   API_URL,
   CACHE_TIME,
-  SharedModule
+  HttpRequestInterceptor
 } from '@people/person/shared';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app.routing-module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { PeopleSharedUiNavbarModule } from '@people/shared/ui-navbar';
 import { RouterModule } from '@angular/router';
 
@@ -23,7 +23,6 @@ import { RouterModule } from '@angular/router';
     BrowserAnimationsModule,
     AppRoutingModule,
     RouterModule,
-    SharedModule,
     HttpClientModule,
     PeopleSharedUiNavbarModule
   ],
@@ -44,6 +43,11 @@ import { RouterModule } from '@angular/router';
     {
       provide: CACHE_TIME,
       useValue: environment.cacheTime
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpRequestInterceptor,
+      multi: true
     }
   ]
 })

@@ -9,7 +9,7 @@ import {
 } from '@people/person/resource';
 import { GetPersonRequestPayload } from '../resources/request-payloads/get-person.request-payload';
 import { GetPersonCollectionRequestPayload } from '../resources/request-payloads/get-person-collection.request-payload';
-import { delay } from 'rxjs/operators';
+import { delay, finalize, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -39,11 +39,13 @@ export class PersonDataService {
   getPersonCollection(
     payload: GetPersonCollectionRequestPayload
   ): Observable<Person[]> {
-    return of(PERSON_COLLECTION_MOCK_DATA).pipe(delay(500));
-    // return payload.overrideCache ||
-    //   !this.lastRequestTimestamp ||
-    //   Date.now() - this.lastRequestTimestamp > this.cacheTime
-    //   ? this.http.get<Person[]>(this.endpoints.getPersonCollection)
-    //   : of(this.cachedPersonCollection);
+    // return of(PERSON_COLLECTION_MOCK_DATA).pipe(delay(500));
+    return payload.overrideCache ||
+      !this.lastRequestTimestamp ||
+      Date.now() - this.lastRequestTimestamp > this.cacheTime
+      ? this.http
+          .get<Person[]>(this.endpoints.getPersonCollection)
+          .pipe(tap(data => (this.cachedPersonCollection = data)))
+      : of(this.cachedPersonCollection);
   }
 }
