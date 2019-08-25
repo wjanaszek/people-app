@@ -1,31 +1,33 @@
-<h1 mat-dialog-title>User details</h1>
-<div
-  *ngIf="!personLoading; else spinner"
-  mat-dialog-content
-  [style.background-image]="'url(' + person?.background_url + ')'"
->
-  <div *ngIf="!isError; else errorMessage" class="details-dialog--container">
-    <div class="details-dialog--container__avatar">
-      <img [src]="person.avatar" alt="person avatar" />
-    </div>
-    <div class="details-dialog--container__info-fields">
-      <span>ID: {{ person.id }}</span>
-      <span>Full name: {{ getPersonFullName(person) }}</span>
-      <span>Age: {{ person.age }}</span>
+<div class="main">
+  <h1 mat-dialog-title>User details</h1>
+  <div *ngIf="!personLoading; else spinner" mat-dialog-content>
+    <div
+      *ngIf="!isError; else errorMessage"
+      class="details-dialog--flex-container wrapper"
+      [style.background-image]="'url(' + person?.background_url + ')'"
+    >
+      <div class="details-dialog--container__avatar sidebar">
+        <img [src]="person.avatar" alt="person avatar" />
+      </div>
+      <div class="details-dialog--container__info-fields content">
+        <div>ID: {{ person.id }}</div>
+        <div>Full name: {{ getPersonFullName(person) }}</div>
+        <div>Age: {{ person.age }}</div>
+      </div>
     </div>
   </div>
-</div>
-<div mat-dialog-actions class="details-dialog--actions-container">
-  <button
-    mat-raised-button
-    cdkFocusInitial
-    (click)="closeDialog()"
-    class="details-dialog--actions-close-button"
-    color="primary"
-    type="button"
-  >
-    CLOSE
-  </button>
+  <div mat-dialog-actions class="footer details-dialog--actions-container">
+    <button
+      mat-raised-button
+      cdkFocusInitial
+      (click)="closeDialog()"
+      class="details-dialog--actions-close-button"
+      color="primary"
+      type="button"
+    >
+      CLOSE
+    </button>
+  </div>
 </div>
 <ng-template #spinner>
   <div class="details-dialog--spinner-container">
