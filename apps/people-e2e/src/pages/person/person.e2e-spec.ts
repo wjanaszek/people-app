@@ -1,6 +1,4 @@
 import { PersonPage } from './person.po';
-// @TODO should be fixed
-import 'jasmine';
 import { browser } from 'protractor';
 
 describe('Person page', () => {

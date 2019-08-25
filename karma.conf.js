@@ -15,16 +15,6 @@ module.exports = () => {
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
-    files: [
-      {pattern: 'node_modules/zone.js/dist/zone.min.js', included: true, watched: false},
-      {pattern: 'node_modules/@material/*/dist/*', included: false, watched: false},
-      // Include a Material theme in the test suite.
-      {
-        pattern: 'dist/packages/**/core/theming/prebuilt/indigo-pink.css',
-        included: true,
-        watched: true
-      }
-    ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
@@ -38,8 +28,7 @@ module.exports = () => {
     colors: true,
     logLevel: constants.LOG_INFO,
     autoWatch: true,
-    browserNoActivityTimeout: 60000,
-    browsers: ['ChromeHeadless'],
+    browsers: ['Chrome'],
     singleRun: true
   };
 };
