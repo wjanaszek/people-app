@@ -5,14 +5,27 @@ import { PersonUiListModule } from '@people/person/ui-list';
 import { PersonUiDetailsDialogModule } from '@people/person/ui-details-dialog';
 import { MatButtonModule, MatDialog } from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
-import { PersonDataAccessModule } from '@people/person/data-access';
+import { PersonDataService } from '@people/person/data-access';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import SpyObj = jasmine.SpyObj;
 import { Location } from '@angular/common';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { Person } from '@people/person/resource';
+import SpyObj = jasmine.SpyObj;
+
+class ActivatedRouteMock {
+  params = of();
+}
+
+class DialogMock {
+  open() {
+    return {
+      afterClosed: () => of()
+    };
+  }
+}
 
 describe('PersonComponent', () => {
   let component: PersonComponent;
@@ -20,13 +33,13 @@ describe('PersonComponent', () => {
   let activatedRoute: SpyObj<ActivatedRoute>;
   let dialog: SpyObj<MatDialog>;
   let location: SpyObj<Location>;
+  let personDataService: SpyObj<PersonDataService>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        PersonDataAccessModule,
         PersonUiListModule,
         PersonUiDetailsDialogModule,
         MatButtonModule,
@@ -36,15 +49,22 @@ describe('PersonComponent', () => {
       providers: [
         {
           provide: ActivatedRoute,
-          useValue: jasmine.createSpyObj('activatedRoute', ['params'])
+          useClass: ActivatedRouteMock
         },
         {
           provide: MatDialog,
-          useValue: jasmine.createSpyObj('dialog', ['open'])
+          useClass: DialogMock
         },
         {
           provide: Location,
           useValue: jasmine.createSpyObj('location', ['replaceState'])
+        },
+        {
+          provide: PersonDataService,
+          useValue: jasmine.createSpyObj('personDataService', [
+            'getPerson',
+            'getPersonCollection'
+          ])
         }
       ]
     }).compileComponents();
@@ -52,9 +72,11 @@ describe('PersonComponent', () => {
     activatedRoute = TestBed.get(ActivatedRoute);
     dialog = TestBed.get(MatDialog);
     location = TestBed.get(Location);
+    personDataService = TestBed.get(PersonDataService);
 
-    dialog.open.and.returnValue(of(true));
     location.replaceState.and.callThrough();
+    personDataService.getPerson.and.returnValue(of({}));
+    personDataService.getPersonCollection.and.returnValue(of([]));
   }));
 
   beforeEach(() => {
@@ -65,6 +87,13 @@ describe('PersonComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should load person list', () => {
+    component.ngOnInit();
+    expect(personDataService.getPersonCollection).toHaveBeenCalledWith({
+      overrideCache: false
+    });
   });
 
   it('should contain reload person list button', () => {
@@ -86,9 +115,27 @@ describe('PersonComponent', () => {
     expect(reloadListButton.attributes.disabled).toBe('true');
   });
 
-  it('should open details dialog', () => {
+  it('should reload list after clicking a reload list button', () => {
+    const reloadListButton = fixture.debugElement.query(
+      By.css('.person-collection--reload__button')
+    );
+    expect(reloadListButton).toBeDefined();
+    reloadListButton.triggerEventHandler('click', null);
+    expect(personDataService.getPersonCollection).toHaveBeenCalledWith({
+      overrideCache: true
+    });
+  });
+
+  it('should open details dialog after clicking a row in person list', () => {
+    spyOn(dialog, 'open').and.callThrough();
+    component.onOpenDetails({ id: 1 } as Person);
     expect(dialog.open).toHaveBeenCalled();
   });
 
-  it('should open details dialog after reading id from route params', () => {});
+  it('should open details dialog after reading id from route params', () => {
+    spyOn(dialog, 'open').and.callThrough();
+    activatedRoute.params = of({ id: 1 });
+    component.ngOnInit();
+    expect(dialog.open).toHaveBeenCalled();
+  });
 });

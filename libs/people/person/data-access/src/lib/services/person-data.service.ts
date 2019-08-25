@@ -30,10 +30,10 @@ export class PersonDataService {
   ) {}
 
   getPerson(payload: GetPersonRequestPayload): Observable<Person> {
-    return of(PERSON_DETAILS_MOCK_DATA).pipe(delay(500));
-    // return this.http.get<Person>(
-    //   interpolateUrl(this.endpoints.getPerson, ':id', payload.id)
-    // );
+    // return of(PERSON_DETAILS_MOCK_DATA).pipe(delay(500));
+    return this.http.get<Person>(
+      interpolateUrl(this.endpoints.getPerson, ':id', payload.id)
+    );
   }
 
   getPersonCollection(

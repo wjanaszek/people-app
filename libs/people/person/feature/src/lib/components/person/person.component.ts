@@ -1,9 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  Person,
-  PERSON_COLLECTION_MOCK_DATA,
-  PersonHelper
-} from '@people/person/resource';
+import { Person, PersonHelper } from '@people/person/resource';
 import { MatDialog, Sort } from '@angular/material';
 import { EMPTY, Observable, Subject } from 'rxjs';
 import { catchError, filter, finalize, map, takeUntil } from 'rxjs/operators';
@@ -11,7 +7,6 @@ import { DetailsDialogComponent } from '@people/person/ui-details-dialog';
 import { PersonDataService } from '@people/person/data-access';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'peo-person',
@@ -27,7 +22,6 @@ export class PersonComponent implements OnDestroy, OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private changeDetectorRef: ChangeDetectorRef,
     private dialog: MatDialog,
     private location: Location,
     private personDataService: PersonDataService
@@ -77,19 +71,14 @@ export class PersonComponent implements OnDestroy, OnInit {
   private loadPersonCollection(overrideCache = false): void {
     this.isError = false;
     this.personCollectionLoading = true;
-    this.changeDetectorRef.markForCheck();
 
-    // this.personCollection = PERSON_COLLECTION_MOCK_DATA;
-    // this.personCollectionLoading = false;
-    console.log('loading data from data service');
     this.personDataService
       .getPersonCollection({ overrideCache })
       .pipe(
         finalize(() => {
           this.personCollectionLoading = false;
-          this.changeDetectorRef.markForCheck();
         }),
-        catchError((err: HttpErrorResponse) => {
+        catchError(() => {
           this.isError = true;
           return EMPTY;
         })
