@@ -115,39 +115,92 @@ describe('ListComponent', () => {
     ]);
   });
 
-  it('should contain avatar column in table', () => {});
-
-  it('should contain avatar image in given column in table', () => {});
-
-  it('should contain first name column in table', () => {});
-
-  it('should contain first name of person in given column in table', () => {});
-
-  it('should contain last name column in table', () => {});
-
-  it('should contain last name of person in given column in table', () => {});
-
-  it('should emit person to parent when clicking on row', () => {
-    let person: Person;
-    const row = testHostFixture.debugElement.query(By.directive(MatRow));
-    expect(row).toBeDefined();
-    component.openDetails.subscribe(val => (person = val));
-    row.triggerEventHandler('click', null);
-    expect(person).toBeDefined();
-    expect(component.onOpenDetails).toHaveBeenCalledWith(person);
-    expect(testHostComponent.onOpenDetails).toHaveBeenCalledWith(person);
+  it('should contain avatar column in table', () => {
+    const avatarColumnHeader = testHostFixture.debugElement.query(
+      By.css('.mat-column-avatar')
+    );
+    expect(avatarColumnHeader).toBeDefined();
   });
 
-  it('should emit sort to parent when clicking on last name column in table', () => {
-    let sort: Sort;
+  it('should contain avatar image in given column in table', () => {
+    const person = { id: 1, avatar: '' } as Person;
+    testHostComponent.personCollection = [person];
+    testHostFixture.detectChanges();
+
+    const cell = testHostFixture.debugElement.query(
+      By.css('.mat-column-avatar > div > img')
+    );
+
+    expect(cell).toBeDefined();
+    expect(cell.properties.src).toBe(person.avatar);
+    expect(cell.attributes.alt).toBe('person avatar');
+  });
+
+  it('should contain first name column in table', () => {
+    const firstNameColumnHeader = testHostFixture.debugElement.query(
+      By.css('.mat-column-firstName')
+    );
+    expect(firstNameColumnHeader).toBeDefined();
+  });
+
+  it('should contain first name of person in given column in table', () => {
+    const person = { id: 1, first_name: '' } as Person;
+    testHostComponent.personCollection = [person];
+    testHostFixture.detectChanges();
+
+    const cell = testHostFixture.debugElement.query(
+      By.css('.list__table--firstName')
+    );
+
+    expect(cell).toBeDefined();
+    expect(cell.nativeElement.innerText).toBe(person.first_name);
+  });
+
+  it('should contain last name column in table', () => {
     const lastNameColumnHeader = testHostFixture.debugElement.query(
       By.css('.mat-column-lastName')
     );
     expect(lastNameColumnHeader).toBeDefined();
-    component.sortData.subscribe(val => (sort = val));
+  });
+
+  it('should contain last name of person in given column in table', () => {
+    const person = { id: 1, last_name: '' } as Person;
+    testHostComponent.personCollection = [person];
+    testHostFixture.detectChanges();
+
+    const cell = testHostFixture.debugElement.query(
+      By.css('.list__table--lastName')
+    );
+
+    expect(cell).toBeDefined();
+    expect(cell.nativeElement.innerText).toBe(person.last_name);
+  });
+
+  it('should emit person to parent when clicking on row', () => {
+    spyOn(testHostComponent, 'onOpenDetails').and.callThrough();
+    const person = { id: 1 } as Person;
+    testHostComponent.personCollection = [person];
+    testHostFixture.detectChanges();
+
+    const row = testHostFixture.debugElement.query(By.directive(MatRow));
+    expect(row).toBeDefined();
+    row.triggerEventHandler('click', null);
+
+    expect(testHostComponent.onOpenDetails).toHaveBeenCalledWith(person);
+  });
+
+  it('should emit sort to parent when clicking on last name column in table', () => {
+    spyOn(testHostComponent, 'onSortData').and.callThrough();
+    const sort = { active: 'lastName', direction: 'asc' };
+    testHostComponent.personCollection = [{ id: 1 } as Person];
+    testHostFixture.detectChanges();
+
+    const lastNameColumnHeader = testHostFixture.debugElement.query(
+      By.css('.mat-column-lastName')
+    );
+    expect(lastNameColumnHeader).toBeDefined();
     lastNameColumnHeader.triggerEventHandler('click', null);
-    expect(sort).toBeDefined();
-    expect(component.onSortData).toHaveBeenCalledWith(sort);
+
     expect(testHostComponent.onSortData).toHaveBeenCalledWith(sort);
   });
 

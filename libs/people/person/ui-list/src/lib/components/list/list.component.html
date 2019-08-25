@@ -21,14 +21,18 @@
 
       <ng-container matColumnDef="firstName">
         <mat-header-cell *matHeaderCellDef> First name </mat-header-cell>
-        <mat-cell *matCellDef="let person"> {{ person.first_name }} </mat-cell>
+        <mat-cell *matCellDef="let person" class="list__table--firstName">
+          {{ person.first_name }}
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="lastName">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Last name
         </mat-header-cell>
-        <mat-cell *matCellDef="let person"> {{ person.last_name }} </mat-cell>
+        <mat-cell *matCellDef="let person" class="list__table--lastName">
+          {{ person.last_name }}
+        </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
