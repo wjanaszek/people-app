@@ -5,6 +5,9 @@
       <a (click)="scrollToElement(projectStructure)">Project structure</a>
     </li>
     <li>
+      <a (click)="scrollToElement(styles)">Styles</a>
+    </li>
+    <li>
       <a (click)="scrollToElement(dataAccessLib)">Data access module</a>
     </li>
     <li>
@@ -67,11 +70,17 @@
     navigate between person list and specification.
   </p>
 
+  <h3 #styles>Styles</h3>
+  <p>
+    SCSS and flex is used.
+  </p>
+
   <h3 #dataAccessLib>Data access module</h3>
   <p>
     Contains a data service used to get person collection and person details
     data. It also provides a cache mechanism, based on comparing timestamp of
-    last request with the new one.
+    last request with the new one. There is a possibility to get a mock data
+    instead of real after uncommenting few lines.
   </p>
 
   <h3 #personListComponent>Person list</h3>
@@ -87,6 +96,7 @@
     Dummy component with onPush change detection strategy. Data is passed by
     injecting an object of properties from parent when opening a dialog.
     Displays a loading indicator or error message, depending on result of
-    loading given person.
+    loading given person. Component is made responsive for mobile phones and
+    desktops using flex.
   </p>
 </div>

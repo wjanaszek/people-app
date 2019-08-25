@@ -21,6 +21,8 @@ export class SpecificationComponent {
   sharedLib: HTMLElement;
   @ViewChild('specificationLib', { static: true })
   specificationLib: HTMLElement;
+  @ViewChild('styles', { static: true })
+  styles: HTMLElement;
 
   scrollToElement(element?: HTMLElement): void {
     if (element) {
