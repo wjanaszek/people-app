@@ -42,22 +42,19 @@ describe('Person page', () => {
     expect(personPage.getPersonDetailsDialog().isPresent()).toBeTruthy();
   });
 
-  // @TODO fix that test
   it('should be possible to sort people by last name', () => {
     const lastNameColumn = personPage.getLastNameColumn();
     let personCollection = personPage.getPersonCollection();
-    const firstPerson = personCollection.first();
-    const lastPerson = personCollection.last();
-
-    expect(firstPerson.equals(lastPerson)).toBeFalsy();
+    const firstPersonId = personCollection.first().getAttribute('id');
+    const lastPersonId = personCollection.last().getAttribute('id');
 
     lastNameColumn.click();
 
     personCollection = personPage.getPersonCollection();
-    const sortedFirstPerson = personCollection.last();
-    const sortedLastPerson = personCollection.last();
+    const sortedFirstPersonId = personCollection.first().getAttribute('id');
+    const sortedLastPersonId = personCollection.last().getAttribute('id');
 
-    expect(sortedFirstPerson.equals(firstPerson)).toBeFalsy();
-    expect(sortedLastPerson.equals(lastPerson)).toBeFalsy();
+    expect(sortedFirstPersonId).not.toBe(firstPersonId);
+    expect(sortedLastPersonId).not.toBe(lastPersonId);
   });
 });
